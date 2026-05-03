@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 
 const db = new Sequelize({
     dialect: 'sqlite',
-    storage: 'creditos.sqlite'
+    storage: 'peliculas.sqlite'
 })
 
 async function init() {
