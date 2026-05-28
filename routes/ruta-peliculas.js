@@ -29,6 +29,18 @@ const validarToken = (req, res, next) => {
     }
 }
 
+//Generar token
+router.post('/login', (req, res) => {
+    const { usuario, password } = req.body
+
+    if (usuario === 'admin' && password === '1234') {
+        const token = jwt.sign({ usuario }, secretKey, { expiresIn: '1h' })
+        return res.json({ token })
+    }
+
+    return res.status(401).json({ error: 'Datos invalidos' })
+})
+
 router.use(validarToken)
 
 router.get('/', validarApiKey, async (req, res) => {
@@ -60,17 +72,5 @@ router.delete('/:id', validarApiKey, async (req, res) => {
     const resultado = await service.deletePelicula(id)
     res.send(resultado)
 })
-
-//Generar el token
-/* router.post('/login', (req, res) => {
-    const { usuario, password } = req.body
-
-    if (usuario === 'admin' && password === '1234') {
-        const token = jwt.sign({ usuario }, secretKey, { expiresIn: '1h' })
-        return res.json({ token })
-    }
-
-    return res.status(401).json({ error: 'Datos invalidos' })
-}) */
 
 export default router
