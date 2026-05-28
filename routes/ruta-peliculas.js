@@ -62,7 +62,7 @@ router.delete('/:id', validarApiKey, async (req, res) => {
 })
 
 //Generar el token
-router.post('/login', (req, res) => {
+/* router.post('/login', (req, res) => {
     const { usuario, password } = req.body
 
     if (usuario === 'admin' && password === '1234') {
@@ -71,6 +71,6 @@ router.post('/login', (req, res) => {
     }
 
     return res.status(401).json({ error: 'Datos invalidos' })
-})
+}) */
 
 export default router
